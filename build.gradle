@@ -6,8 +6,6 @@ buildscript {
 		def depMgmtVersion = versions['dependency.management.plugin.version']
 
 		classpath "io.spring.gradle:dependency-management-plugin:${depMgmtVersion}"
-		classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
-		classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16'
 		classpath 'com.moowork.gradle:gradle-node-plugin:1.1.1'
 
 		// classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5-rc1'
@@ -21,11 +19,6 @@ buildscript {
 
 import com.vanniktech.maven.publish.JavaLibrary
 import com.vanniktech.maven.publish.JavadocJar
-
-
-wrapper {
-	gradleVersion = '6.8.3'
-}
 
 // note that a production build creates javadoc, sources jars and signatures undesired during development
 // for performance reasons
@@ -49,7 +42,7 @@ gradle.beforeProject { Project project ->
 	project.with {
 		apply plugin: "eclipse"
 
-		apply plugin: 'maven'
+		apply plugin: 'maven-publish'
 
 		def docs = project.name == 'crnk-documentation'
 		def ui = project.name == 'crnk-ui'
@@ -67,13 +60,13 @@ gradle.beforeProject { Project project ->
 
 			if (!bom) {
 				dependencies {
-					testCompile group: 'junit', name: 'junit', version: '4.12'
-					testCompile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
-					testCompile group: 'org.assertj', name: 'assertj-core', version: '2.2.0'
+					testImplementation group: 'junit', name: 'junit', version: '4.12'
+					testImplementation group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
+					testImplementation group: 'org.assertj', name: 'assertj-core', version: '2.2.0'
 					// https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api
-					compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.2'
+					implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.2'
 					// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
-					compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+					implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
 				}
 
 				test {
@@ -106,6 +99,9 @@ gradle.beforeProject { Project project ->
 						dependency 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.10'
 
 						dependency 'org.reflections:reflections:0.9.11'
+
+					    dependency 'org.slf4j:slf4j-api:1.7.25'
+					    dependency 'net.jodah:typetools:0.6.1'
 					}
 				}
 			}

@@ -1,14 +1,18 @@
 apply plugin: 'java'
 
 dependencies {
-    compile project(':crnk-meta')
-    compile project(':crnk-gen:crnk-gen-base')
+    implementation project(':crnk-core')
+    implementation project(':crnk-meta')
+    implementation project(':crnk-gen:crnk-gen-base')
 
+    implementation 'org.slf4j:slf4j-api'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
 
-    testCompile 'commons-io:commons-io:2.5'
-    testCompile project(':crnk-meta')
-    testCompile project(':crnk-test')
-    testCompile project(':crnk-data:crnk-data-facet')
+    testImplementation 'commons-io:commons-io:2.5'
+    testImplementation project(':crnk-meta')
+    testImplementation project(':crnk-test')
+    testImplementation project(':crnk-data:crnk-data-facet')
+	testImplementation 'org.apache.commons:commons-lang3:3.20.0'
 }
 
 

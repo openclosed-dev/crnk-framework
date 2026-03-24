@@ -1,8 +1,10 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
 
-    compile project(':crnk-core')
+    api project(':crnk-core')
+    implementation 'net.jodah:typetools'
+    implementation 'org.slf4j:slf4j-api'
 
     compileOnly 'org.apache.httpcomponents:httpclient:4.5.2'
     compileOnly 'org.glassfish.jersey.ext:jersey-proxy-client'
@@ -11,7 +13,15 @@ dependencies {
     compileOnly 'com.squareup.okhttp3:okhttp:3.4.1'
     compileOnly 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider'
 
-    testCompile project(':crnk-setup:crnk-setup-rs')
-    testCompile project(':crnk-test')
+    testImplementation project(':crnk-setup:crnk-setup-rs')
+    testImplementation project(':crnk-test')
 
+    testImplementation 'org.apache.httpcomponents:httpclient:4.5.2'
+    testImplementation 'org.glassfish.jersey.ext:jersey-proxy-client'
+    testImplementation 'org.glassfish.jersey.core:jersey-client'
+    testImplementation 'org.glassfish.jersey.media:jersey-media-json-jackson'
+    testImplementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    testImplementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider'
+	testImplementation 'io.rest-assured:rest-assured:3.0.2'
+	testImplementation 'org.slf4j:jul-to-slf4j:1.7.25'
 }

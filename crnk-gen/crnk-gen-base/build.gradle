@@ -1,8 +1,10 @@
 apply plugin: 'java'
 
 dependencies {
-	compile project(':crnk-meta')
+	implementation project(':crnk-meta')
 
-	testCompile project(':crnk-meta')
-	testCompile project(':crnk-test')
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+
+	testImplementation project(':crnk-meta')
+	testImplementation project(':crnk-test')
 }

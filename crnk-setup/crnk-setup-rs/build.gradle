@@ -1,15 +1,21 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
 
-	compile project(':crnk-core')
+	implementation project(':crnk-core')
+    implementation 'org.slf4j:slf4j-api'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
 	compileOnly 'javax.servlet:javax.servlet-api:3.0.1'
 	compileOnly 'javax.annotation:javax.annotation-api:1.2'
 	compileOnly 'javax.ws.rs:javax.ws.rs-api:2.1'
 
-	testCompile project(':crnk-test')
-	testCompile project(':crnk-client')
-	testCompile 'javax.servlet:javax.servlet-api:3.0.1'
-	testCompile 'javax.annotation:javax.annotation-api:1.2'
-	testCompile 'net.javacrumbs.json-unit:json-unit-fluent:1.5.3'
+	testImplementation project(':crnk-test')
+	testImplementation project(':crnk-client')
+	testImplementation 'javax.servlet:javax.servlet-api:3.0.1'
+	testImplementation 'javax.annotation:javax.annotation-api:1.2'
+	testImplementation 'net.javacrumbs.json-unit:json-unit-fluent:1.5.3'
+	testImplementation 'org.glassfish.jersey.media:jersey-media-json-jackson'
+	testImplementation 'io.rest-assured:rest-assured:3.0.2'
+	testImplementation 'org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty'
+	testImplementation 'com.google.guava:guava:26.0-jre'
 }

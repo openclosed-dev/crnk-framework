@@ -1,12 +1,18 @@
-apply plugin: 'org.asciidoctor.convert'
+plugins {
+	id 'org.asciidoctor.jvm.convert' version '4.0.4'
+	id 'org.asciidoctor.jvm.pdf' version '4.0.4'
+}
 
 asciidoctor {
-	backends = ['html5', 'pdf']
+	outputOptions {
+		backends = ['html5', 'pdf']
+	}
 	attributes 'source-highlighter': 'coderay'
 	sources {
 		include 'index.adoc'
 		include 'cheatsheet.adoc'
 	}
+	baseDirFollowsSourceFile()
 }
 
 tasks.assemble.dependsOn 'asciidoctor'

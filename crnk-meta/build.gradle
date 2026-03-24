@@ -1,10 +1,15 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
-	compile project(':crnk-core')
+	implementation project(':crnk-core')
 	compileOnly project(':crnk-client')
+    implementation 'org.slf4j:slf4j-api'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
 
-	testCompile project(':crnk-client')
-	testCompile project(':crnk-setup:crnk-setup-rs')
-	testCompile project(':crnk-test')
+	testImplementation project(':crnk-client')
+	testImplementation project(':crnk-setup:crnk-setup-rs')
+	testImplementation project(':crnk-test')
+
+	testImplementation 'com.squareup.okhttp3:okhttp:3.4.1'
 }
