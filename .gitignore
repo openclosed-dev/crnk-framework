@@ -132,3 +132,5 @@ build
 node_modules
 
 temp
+
+/.vscode/
