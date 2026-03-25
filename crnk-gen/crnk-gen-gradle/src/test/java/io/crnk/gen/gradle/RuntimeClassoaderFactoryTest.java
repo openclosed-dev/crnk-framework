@@ -47,7 +47,7 @@ public class RuntimeClassoaderFactoryTest {
 		project.getPluginManager().apply(GeneratorPlugin.class);
 
 		GeneratorExtension config = project.getExtensions().getByType(GeneratorExtension.class);
-		config.getRuntime().setConfiguration("test");
+		config.getRuntime().setConfiguration("testRuntimeClasspath");
 
 		TSGeneratorModule module = new TSGeneratorModule();
 

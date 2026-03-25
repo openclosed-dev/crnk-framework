@@ -39,7 +39,7 @@ public class GeneratorPluginTest {
         project.getPluginManager().apply(GeneratorPlugin.class);
 
         extension = project.getExtensions().getByType(GeneratorExtension.class);
-        extension.getRuntime().setConfiguration("test");
+        extension.getRuntime().setConfiguration("testRuntimeClasspath");
         extension.setResourcePackages(Arrays.asList("io.crnk.test.mock"));
         extension.setForked(false);
         extension.init();
