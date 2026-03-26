@@ -127,9 +127,9 @@ to add such filters:
 The `SecurityModule` comes with built-in support for DAC. An example looks like:
 
 [source]
-.DataRoomFilterTest.java
+.DataroomFilterTest.java
 ----
-include::../../../../crnk-security/src/test/java/io/crnk/security/DataRoomFilterTest.java[tags=docs]
+include::../../../../crnk-security/src/test/java/io/crnk/security/DataroomFilterTest.java[tags=docs]
 ----
 
 A `DataRoomFilter` can be passed to the `SecurityConfig`. It has to provide
