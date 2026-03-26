@@ -113,12 +113,12 @@ gradle.beforeProject { Project project ->
 
 			task sourcesJar(type: Jar) {
 				from sourceSets.main.allSource
-				classifier = 'sources'
+				archiveClassifier = 'sources'
 			}
 
 			task javadocJar(type: Jar, dependsOn: 'javadoc') {
 				from javadoc.destinationDir
-				classifier = 'javadoc'
+				archiveClassifier = 'javadoc'
 			}
 
 

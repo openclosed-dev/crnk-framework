@@ -39,7 +39,7 @@ dependencies {
     testImplementation project(':crnk-test')
 
 	constraints {
-		testImplementation 'org.codehaus.groovy:groovy-xml:3.0.13'
+		testImplementation 'org.codehaus.groovy:groovy-xml:3.0.24'
 	}
 }
 
