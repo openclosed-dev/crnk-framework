@@ -107,36 +107,6 @@ gradle.beforeProject { Project project ->
 			}
 		}
 
-		// TODO gradle publishing to maven central?
-		if (!docs && !examples && !testProject && !legacyBraveProject) {
-			apply plugin: "jacoco"
-			jacoco {
-				toolVersion = "0.8.5"
-			}
-
-			rootProject.tasks.jacocoMerge.executionData tasks.withType(Test)
-			rootProject.tasks.jacocoRootReport.additionalSourceDirs files(sourceSets.main.allSource.srcDirs)
-
-			def sourceDirs = rootProject.tasks.jacocoRootReport.sourceDirectories
-			def classDirs = rootProject.tasks.jacocoRootReport.classDirectories
-
-			def mainOutput = files(files(sourceSets.main.output).collect {
-				fileTree(dir: it, exclude: '**/legacy/**')
-			})
-
-			rootProject.tasks.jacocoRootReport.sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
-			rootProject.tasks.jacocoRootReport.classDirectories.from mainOutput
-
-			rootProject.coveralls.sourceDirs.addAll(sourceSets.main.allSource.srcDirs.flatten())
-
-			jacocoTestReport {
-				reports {
-					xml.enabled = true // coveralls plugin depends on xml format report
-					html.enabled = true
-				}
-			}
-		}
-
 		apply plugin: 'maven-publish'
 
 		if (!docs && !examples) {
@@ -218,50 +188,3 @@ gradle.beforeProject { Project project ->
 
 	}
 }
-
-// coveralls setup
-apply plugin: "jacoco"
-apply plugin: "com.github.kt3k.coveralls"
-
-def publishedProjects = subprojects.findAll {
-	it.name != 'crnk-documentation' && it.name != 'crnk-ui' && it.name != 'crnk-test' && !it.name.contains('example')
-}
-
-task jacocoMerge(type: JacocoMerge) {
-	destinationFile = new File(project.buildDir, 'jacoco/test.exec')
-	doFirst {
-		executionData = files(executionData.findAll { it.exists() })
-	}
-	for (publishedProject in publishedProjects) {
-		dependsOn publishedProject.path + ":check"
-	}
-}
-
-
-task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
-	description = 'Generates an aggregate report from all subprojects'
-
-	dependsOn tasks.jacocoMerge
-
-	executionData tasks.jacocoMerge.destinationFile
-
-	reports {
-		html.enabled = true // human readable
-		xml.enabled = true // required by coveralls
-	}
-
-}
-
-
-coveralls {
-	jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-}
-
-tasks.coveralls {
-	group = 'Coverage reports'
-	description = 'Uploads the aggregated coverage report to Coveralls'
-
-	dependsOn jacocoRootReport
-}
-
-
