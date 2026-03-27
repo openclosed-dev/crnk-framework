@@ -16,14 +16,21 @@ RUN apt-get update \
 
 ARG GRADLE_VERSION
 
-RUN wget -nv "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+RUN curl -fsSLO "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
   && mkdir /opt/gradle \
   && unzip -d /opt/gradle gradle-${GRADLE_VERSION}-bin.zip
 
-ENV PATH=$PATH:/opt/gradle/gradle-${GRADLE_VERSION}/bin
+ARG MAVEN_VERSION
+
+RUN curl -fsSLO "https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
+  && mkdir /opt/maven \
+  && tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/maven
+
+ENV PATH=$PATH:/opt/gradle/gradle-${GRADLE_VERSION}/bin:/opt/maven/apache-maven-${MAVEN_VERSION}/bin
 
 RUN mkdir /workspaces && chown ${USERNAME}:${USERNAME} /workspaces
 
 USER ${USERNAME}
 
-RUN mkdir -p /home/${USERNAME}/.gradle/caches
+RUN mkdir -p /home/${USERNAME}/.gradle/caches \
+  && mkdir -p /home/${USERNAME}/.m2/repository

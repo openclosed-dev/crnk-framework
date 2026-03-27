@@ -4,6 +4,7 @@ services:
       context: .
       args:
         - GRADLE_VERSION=8.14.1
+        - MAVEN_VERSION=3.9.14
         - USERNAME=${USER:?err}
         - USER_UID=${COMPOSE_USER_ID:-1000}
         - USER_GID=${COMPOSE_GROUP_ID:-1000}
@@ -16,5 +17,9 @@ services:
       - type: volume
         source: gradle_caches
         target: /home/${USER}/.gradle/caches
+      - type: volume
+        source: maven_repo
+        target: /home/${USER}/.m2/repository
 volumes:
   gradle_caches: {}
+  maven_repo: {}
