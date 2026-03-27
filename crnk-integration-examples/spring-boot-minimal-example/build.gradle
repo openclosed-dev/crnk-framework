@@ -1,6 +1,7 @@
-apply plugin: 'java'
-
-apply plugin: 'application'
+plugins {
+	id 'crnk.java'
+	id 'application'
+}
 
 mainClassName = "io.crnk.example.springboot.microservice.MinimalSpringBootApplication"
 

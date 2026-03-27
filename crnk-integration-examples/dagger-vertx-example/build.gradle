@@ -1,10 +1,15 @@
-import com.bmuschko.gradle.docker.tasks.container.DockerCreateContainer
-import com.bmuschko.gradle.docker.tasks.container.DockerRemoveContainer
-import com.bmuschko.gradle.docker.tasks.container.DockerStartContainer
-import com.bmuschko.gradle.docker.tasks.container.DockerStopContainer
-import proguard.gradle.ProGuardTask
+buildscript {
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.15"
 
-apply plugin: 'java'
+        classpath 'net.sf.proguard:proguard-gradle:6.0.3'
+    }
+}
+
+plugins {
+	id 'crnk.java'
+}
+
 sourceSets {
     shrinked
 }
@@ -12,14 +17,6 @@ sourceSets {
 configurations {
     shrinked.extendsFrom compile
     shrinked.extendsFrom runtime
-}
-
-buildscript {
-    dependencies {
-        classpath "net.ltgt.gradle:gradle-apt-plugin:0.15"
-
-        classpath 'net.sf.proguard:proguard-gradle:6.0.3'
-    }
 }
 
 sourceSets {

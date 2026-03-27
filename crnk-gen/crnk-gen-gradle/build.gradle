@@ -1,6 +1,7 @@
-apply plugin: 'java'
-
-apply plugin: 'java-gradle-plugin'
+plugins {
+	id 'crnk.java-library'
+	id 'java-gradle-plugin'
+}
 
 gradlePlugin {
     plugins {
@@ -42,8 +43,3 @@ dependencies {
 		testImplementation 'org.codehaus.groovy:groovy-xml:3.0.24'
 	}
 }
-
-
-
-
-

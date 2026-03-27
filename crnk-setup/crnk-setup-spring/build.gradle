@@ -1,6 +1,7 @@
-apply plugin: 'java-library'
+plugins {
+	id 'crnk.java-library'
+}
 
-apply plugin: 'io.spring.dependency-management'
 dependencyManagement {
 	imports {
 		mavenBom 'org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE'
@@ -46,5 +47,3 @@ dependencies {
 	testImplementation 'net.javacrumbs.json-unit:json-unit-fluent:1.5.3'
 	testImplementation 'com.squareup.okhttp3:okhttp:3.4.1'
 }
-
-

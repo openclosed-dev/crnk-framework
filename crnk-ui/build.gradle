@@ -2,7 +2,9 @@
 
 //apply plugin: 'com.moowork.node'
 
-apply plugin: 'java'
+plugins {
+	id 'crnk.java'
+}
 
 dependencies {
     implementation project(':crnk-core')

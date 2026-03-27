@@ -1,0 +1,20 @@
+plugins {
+	id 'java-library'
+	id 'maven-publish'
+	id 'crnk.java'
+}
+
+tasks.register('sourcesJar', Jar) {
+	from sourceSets.main.allSource
+	archiveClassifier = 'sources'
+}
+
+tasks.register('javadocJar', Jar) {
+	dependsOn javadoc
+	from javadoc.destinationDir
+	archiveClassifier = 'javadoc'
+}
+
+tasks.withType(Javadoc) {
+	options.addStringOption('Xdoclint:none', '-quiet')
+}

@@ -1,4 +1,7 @@
-apply plugin: 'war'
+plugins {
+	id 'war'
+	id 'crnk.java'
+}
 
 war {
 	archiveFileName = "example.war"
@@ -13,5 +16,8 @@ dependencies {
 	implementation project(':crnk-data:crnk-data-jpa')
 
 	compileOnly 'javax:javaee-api:7.0'
+}
 
+tasks.named('compileJava') {
+	dependsOn ':crnk-setup:crnk-setup-cdi:processResources'
 }
