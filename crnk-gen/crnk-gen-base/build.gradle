@@ -3,6 +3,9 @@ plugins {
 }
 
 dependencies {
+
+	api platform(project(':crnk-platform'))
+
 	implementation project(':crnk-meta')
 
     implementation 'com.fasterxml.jackson.core:jackson-annotations'

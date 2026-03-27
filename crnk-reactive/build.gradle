@@ -11,11 +11,11 @@ dependencies {
 	implementation 'io.projectreactor:reactor-core'
 
 	testImplementation 'io.projectreactor:reactor-test'
-	testImplementation 'ch.qos.logback:logback-classic:1.2.3'
+	testImplementation 'ch.qos.logback:logback-classic'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:1.5.8.RELEASE'
 
-	testImplementation "org.junit.jupiter:junit-jupiter-api:$JUNIT_VERSION"
-	testImplementation "org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION"
-	testImplementation "org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION"
-	testImplementation "org.junit.vintage:junit-vintage-engine:$JUNIT_VERSION"
+	testImplementation 'org.junit.jupiter:junit-jupiter-api'
+	testImplementation 'org.junit.jupiter:junit-jupiter-params'
+	testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+	testImplementation 'org.junit.vintage:junit-vintage-engine'
 }

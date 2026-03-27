@@ -8,22 +8,23 @@ dependencies {
     implementation 'net.jodah:typetools'
     implementation 'org.slf4j:slf4j-api'
 
-    compileOnly 'org.apache.httpcomponents:httpclient:4.5.2'
+    compileOnly 'org.apache.httpcomponents:httpclient'
     compileOnly 'org.glassfish.jersey.ext:jersey-proxy-client'
     compileOnly 'org.glassfish.jersey.core:jersey-client'
     compileOnly 'org.glassfish.jersey.media:jersey-media-json-jackson'
-    compileOnly 'com.squareup.okhttp3:okhttp:3.4.1'
+    compileOnly 'com.squareup.okhttp3:okhttp'
     compileOnly 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider'
 
     testImplementation project(':crnk-setup:crnk-setup-rs')
     testImplementation project(':crnk-test')
 
-    testImplementation 'org.apache.httpcomponents:httpclient:4.5.2'
+    testImplementation 'org.apache.httpcomponents:httpclient'
     testImplementation 'org.glassfish.jersey.ext:jersey-proxy-client'
     testImplementation 'org.glassfish.jersey.core:jersey-client'
     testImplementation 'org.glassfish.jersey.media:jersey-media-json-jackson'
-    testImplementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    testImplementation 'com.squareup.okhttp3:okhttp'
     testImplementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider'
-	testImplementation 'io.rest-assured:rest-assured:3.0.2'
+	testImplementation 'io.rest-assured:rest-assured'
 	testImplementation 'org.slf4j:jul-to-slf4j:1.7.25'
+    testImplementation 'org.mockito:mockito-core'
 }

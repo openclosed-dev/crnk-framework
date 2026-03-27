@@ -2,13 +2,9 @@ plugins {
 	id 'crnk.java-library'
 }
 
-dependencyManagement {
-	imports {
-		mavenBom 'org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE'
-	}
-}
-
 dependencies {
+
+	implementation platform('org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE')
 
 	api project(':crnk-core')
 	implementation project(':crnk-setup:crnk-setup-servlet')
@@ -41,9 +37,9 @@ dependencies {
 	testImplementation project(':crnk-ui')
 	testImplementation project(':crnk-client')
 	testImplementation project(':crnk-test')
-	testImplementation group: 'javax', name: 'javaee-api', version: '7.0'
-	testImplementation 'javax.el:javax.el-api:2.2.4'
-	testImplementation 'org.glassfish.web:javax.el:2.2.6'
+	testImplementation 'javax:javaee-api'
+	testImplementation 'javax.el:javax.el-api'
+	testImplementation 'org.glassfish.web:javax.el'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	testImplementation 'org.springframework.boot:spring-boot-starter-web'

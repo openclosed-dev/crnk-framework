@@ -12,7 +12,8 @@ dependencies {
 	testImplementation project(':crnk-setup:crnk-setup-rs')
 	testImplementation project(':crnk-test')
 
-	testImplementation 'com.squareup.okhttp3:okhttp:3.4.1'
+	testImplementation 'com.squareup.okhttp3:okhttp'
 	testImplementation 'nl.jqno.equalsverifier:equalsverifier:1.7.2'
 	testImplementation 'org.eclipse.jetty:jetty-security:9.4.9.v20180320'
+	testImplementation 'org.mockito:mockito-core'
 }

@@ -49,6 +49,8 @@ include ':crnk-integration-examples:spring-boot-minimal-example'
 include ':crnk-integration-examples:spring-boot-microservice-example'
 include ':crnk-integration-examples:dagger-vertx-example'
 
+include ':crnk-platform'
+
 gradle.beforeProject { Project project ->
     project.with {
 

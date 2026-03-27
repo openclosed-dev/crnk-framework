@@ -18,7 +18,7 @@ dependencies {
     compileOnly 'org.apache.deltaspike.cdictrl:deltaspike-cdictrl-api:1.7.1'
     compileOnly 'org.jboss.weld.se:weld-se-core:2.4.0.Final'
     compileOnly 'org.springframework.boot:spring-boot:2.1.0.RELEASE'
-    compileOnly 'javax:javaee-api:7.0'
+    compileOnly 'javax:javaee-api'
 
     testImplementation project(':crnk-meta')
     testImplementation project(':crnk-test')
@@ -31,8 +31,9 @@ dependencies {
     testImplementation 'org.apache.deltaspike.modules:deltaspike-test-control-module-impl:1.7.1'
     testImplementation 'org.apache.deltaspike.cdictrl:deltaspike-cdictrl-weld:1.7.1'
     testImplementation 'org.jboss.weld.se:weld-se-core:2.4.0.Final'
-    testImplementation 'javax:javaee-api:7.0'
+    testImplementation 'javax:javaee-api'
     testImplementation 'org.springframework.boot:spring-boot:2.1.0.RELEASE'
+	testImplementation 'org.mockito:mockito-core'
 }
 
 tasks.named('compileTestJava') {

@@ -13,5 +13,6 @@ dependencies {
 	testImplementation project(':crnk-setup:crnk-setup-rs')
 	testImplementation project(':crnk-test')
 
-	testImplementation 'com.squareup.okhttp3:okhttp:3.4.1'
+	testImplementation 'com.squareup.okhttp3:okhttp'
+	testImplementation 'org.mockito:mockito-core'
 }

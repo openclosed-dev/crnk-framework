@@ -6,17 +6,18 @@ dependencies {
 	implementation project(':crnk-core')
 	compileOnly project(':crnk-meta')
 	compileOnly project(':crnk-client')
-	compileOnly group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.1.Final'
+	compileOnly 'org.hibernate:hibernate-validator'
     implementation 'org.slf4j:slf4j-api'
 
 	testImplementation project(':crnk-client')
 	testImplementation project(':crnk-setup:crnk-setup-rs')
 	testImplementation project(':crnk-test')
 	testImplementation project(':crnk-meta')
-	testImplementation group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.1.Final'
-	testImplementation group: 'org.springframework', name: 'spring-orm', version: '4.3.1.RELEASE'
-	testImplementation group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'
-	testImplementation group: 'org.springframework', name: 'spring-test', version: '4.3.1.RELEASE'
-	testImplementation(group: 'javax', name: 'javaee-api', version: '7.0')
+	testImplementation 'org.hibernate:hibernate-validator'
+	testImplementation 'org.springframework:spring-orm:4.3.1.RELEASE'
+	testImplementation 'org.springframework:spring-context:4.3.1.RELEASE'
+	testImplementation 'org.springframework:spring-test:4.3.1.RELEASE'
+	testImplementation 'javax:javaee-api'
     testImplementation 'com.fasterxml.jackson.core:jackson-annotations'
+	testImplementation 'org.mockito:mockito-core'
 }

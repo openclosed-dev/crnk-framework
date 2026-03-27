@@ -3,18 +3,20 @@ plugins {
 }
 
 dependencies {
+
+	testImplementation platform('org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE')
+
 	implementation project(':crnk-core')
 	compileOnly project(':crnk-reactive')
-	compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
-	compileOnly 'org.slf4j:slf4j-api:1.7.13'
+	compileOnly 'javax.servlet:javax.servlet-api'
+	compileOnly 'org.slf4j:slf4j-api'
 
 	testImplementation project(':crnk-reactive')
 	testImplementation project(':crnk-test')
 	testImplementation project(':crnk-client')
-	testImplementation group: 'org.reflections', name: 'reflections', version: '0.9.9'
-	testImplementation 'javax.servlet:javax.servlet-api:3.1.0'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-web:1.5.8.RELEASE'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:1.5.8.RELEASE'
-	testImplementation 'net.javacrumbs.json-unit:json-unit:1.5.5'
+	testImplementation 'javax.servlet:javax.servlet-api'
+	testImplementation 'net.javacrumbs.json-unit:json-unit'
+	testImplementation 'org.reflections:reflections'
+	testImplementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

@@ -2,13 +2,9 @@ plugins {
 	id 'crnk.java-library'
 }
 
-dependencyManagement {
-	imports {
-		mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.3.RELEASE'
-	}
-}
-
 dependencies {
+
+	implementation platform('org.springframework.boot:spring-boot-dependencies:2.0.3.RELEASE')
 
 	api project(':crnk-core')
 	implementation project(':crnk-setup:crnk-setup-servlet')
@@ -60,7 +56,7 @@ dependencies {
 	testImplementation 'org.springframework:spring-orm'
 	testImplementation 'org.springframework.security:spring-security-core'
 	testImplementation 'net.javacrumbs.json-unit:json-unit-fluent:1.5.3'
-	testImplementation 'org.mockito:mockito-core:2.18.3'
+	testImplementation 'org.mockito:mockito-core'
 	testImplementation 'pl.pragmatists:JUnitParams:1.1.1'
 }
 

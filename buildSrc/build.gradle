@@ -5,7 +5,3 @@ plugins {
 repositories {
 	gradlePluginPortal()
 }
-
-dependencies {
-    implementation 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
-}

@@ -18,6 +18,7 @@ dependencies {
 
     testImplementation project(':crnk-test')
     testImplementation project(':crnk-home')
+	testImplementation 'org.mockito:mockito-core'
 }
 
 /*
