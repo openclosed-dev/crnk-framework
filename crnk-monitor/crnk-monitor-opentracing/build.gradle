@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-	implementation project(':crnk-core')
+	api project(':crnk-core')
     implementation 'org.slf4j:slf4j-api'
 	compileOnly 'io.opentracing:opentracing-api:0.31.0'
 	testImplementation 'io.opentracing:opentracing-api:0.31.0'

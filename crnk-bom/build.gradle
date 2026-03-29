@@ -1,17 +1,32 @@
 plugins {
-	id 'maven-publish'
+	id 'crnk.publish'
 }
 
 description = "Crnk extensions BOM"
+
+def excludes = [
+	'crnk-bom',
+	'crnk-documentation',
+	'crnk-platform',
+	'dagger-vertx-example',
+	'dropwizard-simple-example',
+	'jersey-example',
+	'spring-boot-example',
+	'spring-boot-microservice-example',
+	'spring-boot-minimal-example',
+	'wildfly-example',
+] as Set
 
 def bomGenerator = {
 	def node = asNode()
 	def dependencyMgmtNode = node.appendNode('dependencyManagement')
 	def dependenciesNode = dependencyMgmtNode.appendNode('dependencies')
 
+	def projects = project.rootProject.subprojects.collect().sort({it.name})
+
 	// add subprojects to the bom
-	project.rootProject.subprojects.each {
-		if (it.name != 'crnk-bom') {
+	projects.each {
+		if (it.childProjects.isEmpty() && !(it.name in excludes)) {
 			Node dep = dependenciesNode.appendNode('dependency')
 			dep.appendNode('groupId').value = GROUP_ID
 			dep.appendNode('artifactId').value = it.name

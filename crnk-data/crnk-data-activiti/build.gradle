@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-	implementation project(':crnk-core')
+	api project(':crnk-core')
 	compileOnly 'javax:javaee-api'
 	compileOnly 'org.activiti:activiti-engine:6.0.0'
 

@@ -1,0 +1,35 @@
+plugins {
+	id 'maven-publish'
+}
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			pom {
+				name = "Crnk"
+				description = "JSON API library for Java"
+				inceptionYear = "2020"
+				url = "https ://github.com/crnk-project/crnk-framework/"
+				licenses {
+					license {
+						name = "The Apache License, Version 2.0"
+						url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+						distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+					}
+				}
+				developers {
+					developer {
+						id = "crnk"
+						name = "crnk"
+						url = "https://github.com/crnk-project/"
+					}
+				}
+				scm {
+					url = "https://github.com/crnk-project/crnk-framework"
+					connection = "scm:git:git://github.com/crnk-project/crnk-framework.git"
+					developerConnection = "scm:git:ssh://git@github.com/crnk-project/crnk-framework.git"
+				}
+			}
+		}
+	}
+}

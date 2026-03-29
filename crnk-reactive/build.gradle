@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-	implementation project(':crnk-core')
+	api project(':crnk-core')
 
     implementation 'net.jodah:typetools'
     implementation 'org.slf4j:slf4j-api'

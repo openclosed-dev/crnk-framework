@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-	implementation project(':crnk-core')
+	api project(':crnk-core')
 	implementation project(':crnk-meta')
 	compileOnly project(':crnk-client')
 	compileOnly project(':crnk-data:crnk-data-facet')

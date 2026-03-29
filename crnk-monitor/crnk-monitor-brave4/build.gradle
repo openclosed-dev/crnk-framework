@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
 
-	implementation project(':crnk-core')
+	api project(':crnk-core')
 	compileOnly project(':crnk-client')
 
     implementation 'com.fasterxml.jackson.core:jackson-databind'

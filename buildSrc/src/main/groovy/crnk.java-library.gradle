@@ -1,7 +1,7 @@
 plugins {
 	id 'java-library'
-	id 'maven-publish'
 	id 'crnk.java'
+	id 'crnk.publish'
 }
 
 tasks.register('sourcesJar', Jar) {
@@ -17,4 +17,34 @@ tasks.register('javadocJar', Jar) {
 
 tasks.withType(Javadoc) {
 	options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+			artifact tasks.sourcesJar
+			artifact tasks.javadocJar
+			pom {
+				// Removes dependencyManagement element
+ 				withXml {
+					def root = asNode()
+					def nodes = root["dependencyManagement"]
+					if (!nodes.isEmpty()) {
+						root.remove(nodes.first())
+					}
+				}
+			}
+			versionMapping {
+				// compile
+				usage('java-api') {
+					fromResolutionOf('runtimeClasspath')
+				}
+				// runtime
+				usage('java-runtime') {
+					fromResolutionResult()
+				}
+			}
+		}
+	}
 }

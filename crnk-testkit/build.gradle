@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-	implementation project(':crnk-core')
+	api project(':crnk-core')
 	implementation project(':crnk-client')
     implementation 'org.slf4j:slf4j-api'
     implementation 'com.fasterxml.jackson.core:jackson-databind'

@@ -3,11 +3,11 @@
 //apply plugin: 'com.moowork.node'
 
 plugins {
-	id 'crnk.java'
+	id 'crnk.java-library'
 }
 
 dependencies {
-    implementation project(':crnk-core')
+    api project(':crnk-core')
     implementation project(':crnk-data:crnk-data-facet')
     implementation project(':crnk-meta')
     compileOnly project(':crnk-home')

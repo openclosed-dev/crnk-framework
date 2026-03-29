@@ -14,6 +14,7 @@ gradlePlugin {
 			implementationClass = "io.crnk.gen.gradle.DocletPlugin"
 		}
     }
+	automatedPublishing = false
 }
 
 dependencies {

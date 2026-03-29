@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
 
-	implementation project(':crnk-core')
+	api project(':crnk-core')
     implementation 'org.slf4j:slf4j-api'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
 	compileOnly 'javax.servlet:javax.servlet-api'
