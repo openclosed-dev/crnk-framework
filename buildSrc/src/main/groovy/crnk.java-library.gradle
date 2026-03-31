@@ -48,3 +48,24 @@ publishing {
 		}
 	}
 }
+
+// A temporary workaround
+// Incorrect eclipse classpath when using compileOnly project dependencies and the java-library plugin
+// https://github.com/gradle/gradle/issues/32284
+sourceSets.configureEach {
+    def eclipseCompileClasspath = configurations.resolvable(getTaskName(null, "eclipseCompileClasspath")) {
+        def compileClasspath = configurations.getByName(getCompileClasspathConfigurationName())
+            extendsFrom(compileClasspath)
+            attributes {
+                compileClasspath.attributes.keySet().each { key ->
+                attribute((Attribute) key, compileClasspath.attributes.getAttribute(key))
+            }
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.JAR))
+        }
+    }
+    eclipse {
+        classpath {
+            plusConfigurations.add(eclipseCompileClasspath.get())
+        }
+    }
+}
