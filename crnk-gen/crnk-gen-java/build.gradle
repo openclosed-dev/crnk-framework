@@ -2,6 +2,15 @@ plugins {
 	id 'crnk.java-library'
 }
 
+eclipse.classpath.file {
+	whenMerged { classpath ->
+		classpath.entries.removeAll { entry -> entry.path == 'src/test/resources' }
+		def lib = new org.gradle.plugins.ide.eclipse.model.Library(
+			fileReference(file('src/test/resources')))
+		classpath.entries << lib
+	}
+}
+
 dependencies {
     api project(':crnk-core')
     implementation project(':crnk-meta')

@@ -33,10 +33,10 @@ public class CrnkProcessorTest {
 
     @Test
     public void test() throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-        JavaFileObject projectSource = JavaFileObjects.forResource("Project.java");
-        JavaFileObject userSource = JavaFileObjects.forResource("UserEntity.java");
-        JavaFileObject addressSource = JavaFileObjects.forResource("UserAddress.java");
-        JavaFileObject testSource = JavaFileObjects.forResource("TypedQuerySpecTest.java");
+        JavaFileObject projectSource = JavaFileObjects.forResource("test/Project.java");
+        JavaFileObject userSource = JavaFileObjects.forResource("test/UserEntity.java");
+        JavaFileObject addressSource = JavaFileObjects.forResource("test/UserAddress.java");
+        JavaFileObject testSource = JavaFileObjects.forResource("test/TypedQuerySpecTest.java");
 
         Compilation compilation = javac()
                 .withProcessors(new CrnkProcessor())
