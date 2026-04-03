@@ -22,7 +22,7 @@ configurations {
 sourceSets {
     main {
         java {
-            srcDir 'build/generated/sources/apt/main'
+            srcDir 'build/generated/sources/annotationProcessor/java/main'
         }
     }
 }

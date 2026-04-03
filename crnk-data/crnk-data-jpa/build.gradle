@@ -2,7 +2,19 @@ plugins {
 	id 'crnk.java-library'
 }
 
+sourceSets {
+    test {
+        java {
+            srcDirs += ['build/generated/sources/annotationProcessor/java/test']
+        }
+    }
+}
+
 dependencies {
+
+	annotationProcessor platform(project(':crnk-platform'))
+	testAnnotationProcessor platform(project(':crnk-platform'))
+
 	api project(':crnk-core')
 	implementation project(':crnk-meta')
 	compileOnly project(':crnk-client')
@@ -56,4 +68,3 @@ dependencies {
 	testImplementation 'com.squareup.okhttp3:okhttp'
 	testImplementation 'org.mockito:mockito-core'
 }
-

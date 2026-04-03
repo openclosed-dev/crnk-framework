@@ -4,17 +4,21 @@ plugins {
 }
 
 gradlePlugin {
-    plugins {
-        'crnk-gen' {
-            id = "crnk-gen"
-            implementationClass = "io.crnk.gen.gradle.GeneratorPlugin"
-        }
-		'crnk-xml-doclet' {
-			id = "crnk-xml-doclet"
+	plugins {
+		register('crnk-gen') {
+			id = 'crnk-gen'
+			implementationClass = "io.crnk.gen.gradle.GeneratorPlugin"
+		}
+		register('crnk-xml-doclet') {
+			id = 'crnk-xml-doclet'
 			implementationClass = "io.crnk.gen.gradle.DocletPlugin"
 		}
-    }
+	}
 	automatedPublishing = false
+}
+
+tasks.named('build') {
+	dependsOn 'pluginUnderTestMetadata'
 }
 
 dependencies {
