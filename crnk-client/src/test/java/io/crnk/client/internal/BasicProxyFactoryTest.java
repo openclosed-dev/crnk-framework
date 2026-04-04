@@ -28,7 +28,8 @@ public class BasicProxyFactoryTest {
 
     @Test
     public void testCollectionProxy() {
-        Collection<Task> col = factory.createCollectionProxy(Task.class, ResourceList.class, "http://127.0.0.1:99999", null, null);
+        @SuppressWarnings("unchecked")
+		Collection<Task> col = factory.createCollectionProxy(Task.class, ResourceList.class, "http://127.0.0.1:99999", null, null);
         Assert.assertTrue(col instanceof ResourceList);
         Assert.assertTrue(col instanceof ObjectProxy);
         ObjectProxy proxy = (ObjectProxy) col;
@@ -54,7 +55,7 @@ public class BasicProxyFactoryTest {
         factory.createCollectionProxy(Task.class, InvalidList.class, "http://127.0.0.1:99999", null, null);
     }
 
-    public static class InvalidList extends DefaultResourceList {
+    public static class InvalidList extends DefaultResourceList<Task> {
 
         public InvalidList(String invalidParameter) { // NOSONAR
         }
