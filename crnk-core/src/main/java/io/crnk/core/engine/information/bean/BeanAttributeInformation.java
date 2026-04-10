@@ -27,7 +27,7 @@ public class BeanAttributeInformation {
 
     private String jsonName;
 
-    private Map<Class, Optional<?>> annotations = new ConcurrentHashMap<>();
+    private Map<Class<?>, Optional<?>> annotations = new ConcurrentHashMap<>();
 
     private Type cachedType;
 
@@ -94,7 +94,8 @@ public class BeanAttributeInformation {
         //}
     }
 
-    public <A extends Annotation> Optional<A> getAnnotation(Class<A> annotationClass) {
+    @SuppressWarnings("unchecked")
+	public <A extends Annotation> Optional<A> getAnnotation(Class<A> annotationClass) {
         if (annotations.containsKey(annotationClass)) {
             return (Optional<A>) annotations.get(annotationClass);
         }

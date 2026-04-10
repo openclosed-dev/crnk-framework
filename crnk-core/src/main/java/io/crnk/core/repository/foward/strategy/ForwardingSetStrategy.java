@@ -2,7 +2,6 @@ package io.crnk.core.repository.foward.strategy;
 
 import io.crnk.core.engine.query.QueryContext;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 public interface ForwardingSetStrategy<T, I , D, J >

@@ -211,7 +211,7 @@ public abstract class ResourceInformationProviderBase implements ResourceInforma
 		}
 
 		if (isEmbeddedType(attributeDesc)) {
-			Class elementType = ClassUtils.getRawType(ClassUtils.getElementType(attributeDesc.getImplementationType()));
+			Class<?> elementType = ClassUtils.getRawType(ClassUtils.getElementType(attributeDesc.getImplementationType()));
 			InformationBuilder.EmbeddableInformationBuilder embBuilder = fieldBuilder.embeddedType(elementType);
 			List<ResourceField> embFields = getResourceFields(elementType, access, true);
 			embFields.forEach(field -> embBuilder.addField().from(field));

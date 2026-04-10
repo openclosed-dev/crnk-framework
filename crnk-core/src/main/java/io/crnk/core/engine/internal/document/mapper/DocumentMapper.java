@@ -201,7 +201,7 @@ public class DocumentMapper {
 	}
 
 	private boolean isDefaultRelationshipValue(Object o) {
-		return o == null || (o instanceof Collection) && ((Collection) o).isEmpty();
+		return o == null || (o instanceof Collection) && ((Collection<?>) o).isEmpty();
 	}
 
 	/**

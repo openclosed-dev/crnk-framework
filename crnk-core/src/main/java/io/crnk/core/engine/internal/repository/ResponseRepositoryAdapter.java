@@ -103,7 +103,6 @@ public abstract class ResponseRepositoryAdapter {
             ResourceList<?> resourceList = (ResourceList<?>) resources;
             metaInformation = resourceList.getMeta();
         }
-        QueryAdapter queryAdapter = requestSpec.getQueryAdapter();
         if (repository instanceof MetaRepository) {
             metaInformation = ((MetaRepository) repository).getMetaInformation(resources, requestSpec.getResponseQuerySpec(), metaInformation);
         }

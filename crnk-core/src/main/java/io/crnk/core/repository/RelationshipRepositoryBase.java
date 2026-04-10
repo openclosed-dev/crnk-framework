@@ -70,7 +70,7 @@ public class RelationshipRepositoryBase<T, I , D, J >
 
 	private String sourceResourceType;
 
-	private Class targetResourceClass;
+	private Class<D> targetResourceClass;
 
 	private String targetResourceType;
 
@@ -175,7 +175,6 @@ public class RelationshipRepositoryBase<T, I , D, J >
 		else {
 			RegistryEntry targetEntry = getTargetEntry(field);
 			Collection<D> targets = getTargets(targetEntry, targetIds);
-			@SuppressWarnings("unchecked")
 			Collection<D> currentTargets = getOrCreateCollection(source, fieldName);
 			for (D target : targets) {
 				currentTargets.add(target);
@@ -191,13 +190,12 @@ public class RelationshipRepositoryBase<T, I , D, J >
 		ResourceInformation sourceInformation = getSourceEntry().getResourceInformation();
 		ResourceField field = sourceInformation.findFieldByUnderlyingName(fieldName);
 		if (field.hasIdField()) {
-			Collection currentIds = (Collection) field.getIdAccessor().getValue(source);
+			Collection<?> currentIds = (Collection<?>) field.getIdAccessor().getValue(source);
 			currentIds.removeAll(targetIds);
 		}
 		else {
 			RegistryEntry targetEntry = getTargetEntry(field);
 			Collection<D> targets = getTargets(targetEntry, targetIds);
-			@SuppressWarnings("unchecked")
 			Collection<D> currentTargets = getOrCreateCollection(source, fieldName);
 			for (D target : targets) {
 				currentTargets.remove(target);

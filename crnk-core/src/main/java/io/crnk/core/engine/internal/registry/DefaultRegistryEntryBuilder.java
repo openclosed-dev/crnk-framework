@@ -92,15 +92,12 @@ public class DefaultRegistryEntryBuilder implements RegistryEntryBuilder {
 
     class DefaultRelationshipRepository implements RelationshipRepositoryEntryBuilder {
 
-        private final String fieldName;
-
         private InformationBuilder.RelationshipRepositoryInformationBuilder information;
 
         private Object instance;
 
 
         public DefaultRelationshipRepository(String fieldName) {
-            this.fieldName = fieldName;
             this.information = informationBuilder.createRelationshipRepository(null);
         }
 
@@ -311,16 +308,6 @@ public class DefaultRegistryEntryBuilder implements RegistryEntryBuilder {
         }
     }
 
-
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    private Object buildResourceRepository(ResourceInformation resourceInformation) {
-        resourceRepository.information().setResourceInformation(resourceInformation);
-        ResourceRepositoryInformation repositoryInformation = resourceRepository.information().build();
-
-        Object instance = resourceRepository.instance;
-        return decorateRepository(instance);
-    }
-
     private MatchedRelationship setupForwardingRepository(ResourceField relationshipField) {
         ResourceInformation sourceInformation = relationshipField.getResourceInformation();
 
@@ -367,15 +354,15 @@ public class DefaultRegistryEntryBuilder implements RegistryEntryBuilder {
         ForwardingRelationshipRepository repository;
         if (behavior == RelationshipRepositoryBehavior.FORWARD_OWNER) {
             LOGGER.debug("{}.{}: setting up owner/owner forwarding repository", toShortName(sourceInformation), relationshipField.getUnderlyingName());
-            repository = new ForwardingRelationshipRepository(sourceInformation.getResourceType(), matcher,
+            repository = new ForwardingRelationshipRepository<>(sourceInformation.getResourceType(), matcher,
                     ForwardingDirection.OWNER, ForwardingDirection.OWNER);
         } else if (behavior == RelationshipRepositoryBehavior.FORWARD_GET_OPPOSITE_SET_OWNER) {
             LOGGER.debug("{}.{}: setting up opposite/owner forwarding repository", toShortName(sourceInformation), relationshipField.getUnderlyingName());
-            repository = new ForwardingRelationshipRepository(sourceInformation.getResourceType(), matcher, ForwardingDirection.OPPOSITE, ForwardingDirection.OWNER);
+            repository = new ForwardingRelationshipRepository<>(sourceInformation.getResourceType(), matcher, ForwardingDirection.OPPOSITE, ForwardingDirection.OWNER);
         } else {
             LOGGER.debug("{}.{}: setting up opposite/opposite forwarding repository", toShortName(sourceInformation), relationshipField.getUnderlyingName());
             PreconditionUtil.verifyEquals(RelationshipRepositoryBehavior.FORWARD_OPPOSITE, behavior, "unknown behavior for field=%s", relationshipField);
-            repository = new ForwardingRelationshipRepository(sourceInformation.getResourceType(), matcher,
+            repository = new ForwardingRelationshipRepository<>(sourceInformation.getResourceType(), matcher,
                     ForwardingDirection.OPPOSITE, ForwardingDirection.OPPOSITE);
         }
         repository.setResourceRegistry(moduleRegistry.getResourceRegistry());

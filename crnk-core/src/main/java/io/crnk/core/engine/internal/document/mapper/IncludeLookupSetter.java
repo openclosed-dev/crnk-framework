@@ -71,7 +71,7 @@ public class IncludeLookupSetter {
             inclusionQueryAdapter = queryAdapter.duplicate();
 
             RegistryEntry entry = resourceRegistry.getEntry(queryAdapter.getResourceInformation().getResourceType());
-            PagingBehavior pagingBehavior = entry.getPagingBehavior();
+            PagingBehavior<?> pagingBehavior = entry.getPagingBehavior();
             if (pagingBehavior != null) {
                 inclusionQueryAdapter
                         .setPagingSpec(pagingBehavior.createEmptyPagingSpec());
@@ -101,7 +101,7 @@ public class IncludeLookupSetter {
             checkNoRecursion(fieldPath);
             Set<ResourceField> relationshipFields = util.getRelationshipFields(resourceList);
             for (ResourceField resourceField : relationshipFields) {
-                List<ResourceField> nextFieldPath = new ArrayList(fieldPath);
+                List<ResourceField> nextFieldPath = new ArrayList<>(fieldPath);
                 nextFieldPath.add(resourceField);
                 result = result.merge(it -> populateField(request, resourceList, resourceField, nextFieldPath));
             }

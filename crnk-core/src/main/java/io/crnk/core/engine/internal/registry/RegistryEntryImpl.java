@@ -28,7 +28,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RegistryEntryImpl implements RegistryEntry {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RegistryEntryImpl.class);
+    @SuppressWarnings("unused")
+	private static final Logger LOGGER = LoggerFactory.getLogger(RegistryEntryImpl.class);
 
     private RegistryEntry parentRegistryEntry = null;
 
@@ -38,7 +39,7 @@ public class RegistryEntryImpl implements RegistryEntry {
 
     private Map<ResourceField, RelationshipRepositoryAdapter> relationshipRepositoryAdapter;
 
-    private PagingBehavior pagingBehavior;
+    private PagingBehavior<?> pagingBehavior;
 
     private ResourceInformation resourceInformation;
 
@@ -171,7 +172,8 @@ public class RegistryEntryImpl implements RegistryEntry {
      * Note that currently there is not (yet) any inclusion mechanism supported. This is currently done on a
      * resource/document level only. But there might be some benefit to also be able to do it here on some occasions.
      */
-    public <T, I> ResourceRepository<T, I> getResourceRepositoryFacade() {
+    @SuppressWarnings("unchecked")
+	public <T, I> ResourceRepository<T, I> getResourceRepositoryFacade() {
         return (ResourceRepository<T, I>) new ResourceRepositoryFacade(this, moduleRegistry);
     }
 

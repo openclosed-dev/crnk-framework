@@ -55,7 +55,7 @@ public class ResourceFieldImpl implements ResourceField {
 
     private ResourceFieldAccessor idAccessor;
 
-    private Class idType;
+    private Class<?> idType;
 
     private PatchStrategy patchStrategy;
 

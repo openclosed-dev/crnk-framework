@@ -39,14 +39,11 @@ public class IncludeRelationshipLoader {
 
 	private ResourceRegistry resourceRegistry;
 
-	private PropertiesProvider propertiesProvider;
-
 	private boolean exceptionOnMissingRelatedResource = true;
 
 	public IncludeRelationshipLoader(ResourceRegistry resourceRegistry, ResultFactory resultFactory, PropertiesProvider propertiesProvider) {
 		this.resourceRegistry = resourceRegistry;
 		this.resultFactory = resultFactory;
-		this.propertiesProvider = propertiesProvider;
 
 		if (propertiesProvider != null && propertiesProvider.getProperty(CrnkProperties.EXCEPTION_ON_MISSING_RELATED_RESOURCE) != null) {
 			exceptionOnMissingRelatedResource = Boolean.parseBoolean(propertiesProvider.getProperty(CrnkProperties.EXCEPTION_ON_MISSING_RELATED_RESOURCE));
@@ -60,7 +57,6 @@ public class IncludeRelationshipLoader {
 	 * accordingly and returns the loaded resources for potential inclusion in
 	 * the result resource.
 	 */
-	@SuppressWarnings("unchecked")
 	public Result<Set<Resource>> lookupRelatedResource(IncludeRequest request, Collection<Resource> sourceResources,
 													   ResourceField relationshipField) {
 
@@ -150,7 +146,7 @@ public class IncludeRelationshipLoader {
 			Result<JsonApiResponse> responseResult = oppositeResourceRepository.findAll(relatedIdsToLoad, queryAdapter);
 			return responseResult.map(response -> {
 				LOGGER.debug("got {}", response);
-				Collection responseList = (Collection) response.getEntity();
+				Collection<?> responseList = (Collection<?>) response.getEntity();
 				for (Object responseEntity : responseList) {
 					Resource relatedResource = request.merge(responseEntity);
 					related.add(relatedResource);

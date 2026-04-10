@@ -21,7 +21,7 @@ public class ForwardingStrategyContext {
 
     private final String sourceType;
 
-    private final Class sourceClass;
+    private final Class<?> sourceClass;
 
     public ForwardingStrategyContext(ResourceRegistry resourceRegistry, String sourceType, Class sourceClass) {
         this.resourceRegistry = Objects.requireNonNull(resourceRegistry);
@@ -59,7 +59,7 @@ public class ForwardingStrategyContext {
     public <Q> Collection<Q> findAll(RegistryEntry entry, Collection<?> targetIds, QueryContext queryContext) {
         ResourceRepositoryAdapter targetAdapter = entry.getResourceRepository();
         QueryAdapter queryAdapter = new QuerySpecAdapter(new QuerySpec(entry.getResourceInformation()), resourceRegistry, queryContext);
-        return (Collection) targetAdapter.findAll(targetIds, queryAdapter).get().getEntity();
+        return (Collection<Q>) targetAdapter.findAll(targetIds, queryAdapter).get().getEntity();
     }
 
     public <Q> Q findOne(RegistryEntry entry, Object id, QueryContext queryContext) {

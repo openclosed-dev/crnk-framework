@@ -175,13 +175,12 @@ public class PropertyUtils {
 		return new PropertyException(e, beanClass, field);
 	}
 
-	@SuppressWarnings("unchecked")
 	public static Object prepareValue(Object value, Class<?> fieldClass) {
 		if (Set.class.isAssignableFrom(fieldClass) && value instanceof List) {
-			return new LinkedHashSet<>((List) value);
+			return new LinkedHashSet<>((List<?>) value);
 		}
 		if (List.class.isAssignableFrom(fieldClass) && value instanceof Set) {
-			return new LinkedList<>((Set) value);
+			return new LinkedList<>((Set<?>) value);
 		}
 		return value;
 	}
@@ -199,7 +198,7 @@ public class PropertyUtils {
 			throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
 		if (bean instanceof Map) {
-			return ((Map) bean).get(fieldName);
+			return ((Map<?, ?>) bean).get(fieldName);
 		}
 
 		Field foundField = findField(bean.getClass(), fieldName);

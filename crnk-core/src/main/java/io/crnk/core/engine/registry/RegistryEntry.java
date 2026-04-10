@@ -1,7 +1,5 @@
 package io.crnk.core.engine.registry;
 
-import java.io.Serializable;
-
 import io.crnk.core.engine.information.repository.ResourceRepositoryInformation;
 import io.crnk.core.engine.information.resource.ResourceField;
 import io.crnk.core.engine.information.resource.ResourceInformation;
@@ -12,15 +10,11 @@ import io.crnk.core.repository.ResourceRepository;
 
 public interface RegistryEntry {
 
-
-	@SuppressWarnings("unchecked")
 	ResourceRepositoryAdapter getResourceRepository();
 
 	RelationshipRepositoryAdapter getRelationshipRepository(String fieldName);
 
-	@SuppressWarnings("unchecked")
 	RelationshipRepositoryAdapter getRelationshipRepository(ResourceField field);
-
 
 	ResourceInformation getResourceInformation();
 

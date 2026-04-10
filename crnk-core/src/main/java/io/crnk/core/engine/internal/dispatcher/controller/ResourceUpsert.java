@@ -287,10 +287,10 @@ public abstract class ResourceUpsert extends ResourceIncludeField {
 			}
 
 			ResourceRegistry resourceRegistry = context.getResourceRegistry();
-			List relationshipTypedIds = new LinkedList<>();
+			List<Serializable> relationshipTypedIds = new LinkedList<>();
 			for (ResourceIdentifier resourceId : relationshipIds) {
 				RegistryEntry entry = getRegistryEntry(resourceId.getType());
-				Class idFieldType = entry.getResourceInformation()
+				Class<?> idFieldType = entry.getResourceInformation()
 						.getIdField()
 						.getType();
 				Serializable typedRelationshipId = parseId(resourceId, idFieldType);
@@ -377,7 +377,7 @@ public abstract class ResourceUpsert extends ResourceIncludeField {
 				field.getAccessor().setValue(newResource, null);
 			} else {
 				RegistryEntry entry = getRegistryEntry(relationshipId.getType());
-				Class idFieldType = entry.getResourceInformation()
+				Class<?> idFieldType = entry.getResourceInformation()
 						.getIdField()
 						.getType();
 				Serializable typedRelationshipId = parseId(relationshipId, idFieldType);

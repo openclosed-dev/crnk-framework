@@ -41,8 +41,9 @@ public class HttpRequestContextProvider {
 	 * Safe method to get HttpRequestContext in traditional and reactive settings. In a reactive setting it will make use of the
 	 * subscriber context of Reactor.
 	 */
+	@SuppressWarnings("unchecked")
 	public Result<HttpRequestContext> getRequestContextResult() {
-		return (Result) resultFactory.get().getContext();
+		return (Result<HttpRequestContext>)(Result<?>) resultFactory.get().getContext();
 	}
 
 

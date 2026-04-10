@@ -35,15 +35,12 @@ import org.slf4j.LoggerFactory;
  */
 public class HttpRequestDispatcherImpl implements RequestDispatcher {
 
-    private final ExceptionMapperRegistry exceptionMapperRegistry;
-
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     private ModuleRegistry moduleRegistry;
 
     public HttpRequestDispatcherImpl(ModuleRegistry moduleRegistry, ExceptionMapperRegistry exceptionMapperRegistry) {
         this.moduleRegistry = moduleRegistry;
-        this.exceptionMapperRegistry = exceptionMapperRegistry;
 
         // TODO clean this class up
         this.moduleRegistry.setRequestDispatcher(this);

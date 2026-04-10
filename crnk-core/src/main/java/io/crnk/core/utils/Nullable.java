@@ -38,6 +38,7 @@ public class Nullable<T> {
 		return value == null ? Nullable.empty() : of(value);
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> Nullable<T> nullValue() {
 		return (Nullable<T>) NULL;
 	}

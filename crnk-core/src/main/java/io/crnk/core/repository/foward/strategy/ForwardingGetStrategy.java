@@ -4,7 +4,6 @@ import io.crnk.core.engine.internal.utils.MultivaluedMap;
 import io.crnk.core.engine.query.QueryContext;
 import io.crnk.core.queryspec.QuerySpec;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 public interface ForwardingGetStrategy<T, I , D, J >

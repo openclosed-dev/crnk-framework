@@ -331,7 +331,7 @@ public class DefaultInformationBuilder implements InformationBuilder {
 
         private String idName;
 
-        private Class idType;
+        private Class<?> idType;
 
         private ResourceFieldAccessor idAccessor;
 

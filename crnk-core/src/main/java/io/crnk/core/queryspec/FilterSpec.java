@@ -147,6 +147,7 @@ public class FilterSpec extends AbstractPathSpec implements Comparable<FilterSpe
 		this.operator = operator;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T> T getValue() {
 		return (T) value;
 	}

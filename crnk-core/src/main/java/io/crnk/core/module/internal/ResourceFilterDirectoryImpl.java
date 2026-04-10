@@ -28,15 +28,12 @@ public class ResourceFilterDirectoryImpl implements ResourceFilterDirectory {
 
     private final List<ResourceFilter> filters;
 
-    private final HttpRequestContextProvider requestContextProvider;
-
     private final ResourceRegistry resourceRegistry;
 
 
     public ResourceFilterDirectoryImpl(List<ResourceFilter> filters, HttpRequestContextProvider requestContextProvider,
                                        ResourceRegistry resourceRegistry) {
         this.filters = filters;
-        this.requestContextProvider = requestContextProvider;
         this.resourceRegistry = resourceRegistry;
     }
 
@@ -113,7 +110,8 @@ public class ResourceFilterDirectoryImpl implements ResourceFilterDirectory {
             return null; // no caching without context
         }
         String key = ResourceFilterDirectoryImpl.class.getSimpleName() + method;
-        Map<Object, FilterBehavior> cache = (Map<Object, FilterBehavior>) queryContext.getAttribute(key);
+        @SuppressWarnings("unchecked")
+		Map<Object, FilterBehavior> cache = (Map<Object, FilterBehavior>) queryContext.getAttribute(key);
         if (cache == null) {
             cache = new ConcurrentHashMap<>();
             queryContext.setAttribute(key, cache);

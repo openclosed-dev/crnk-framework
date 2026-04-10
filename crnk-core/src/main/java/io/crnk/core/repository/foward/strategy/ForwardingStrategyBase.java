@@ -22,7 +22,7 @@ public class ForwardingStrategyBase {
 		if (property == null) {
 			Class<?> propertyClass = field.getType();
 			boolean isList = List.class.isAssignableFrom(propertyClass);
-			property = isList ? new ArrayList() : new HashSet();
+			property = isList ? new ArrayList<>() : new HashSet<>();
 			field.getAccessor().setValue(source, property);
 		}
 		return (Collection<D>) property;

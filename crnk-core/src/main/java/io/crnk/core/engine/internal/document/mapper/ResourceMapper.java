@@ -111,7 +111,6 @@ public class ResourceMapper {
 		return info;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void setAttributes(Resource resource, Object entity, ResourceInformation resourceInformation,
 			QueryAdapter queryAdapter, ResourceMappingConfig mappingConfig) {
 		// fields legacy may further limit the number of fields
@@ -155,7 +154,7 @@ public class ResourceMapper {
 	));
 
 	protected boolean isDefaultValue(Object value) {
-		return value == null || defaultValues.contains(value) || ((value instanceof Collection) && ((Collection) value).isEmpty());
+		return value == null || defaultValues.contains(value) || ((value instanceof Collection) && ((Collection<?>) value).isEmpty());
 	}
 
 	protected boolean isIgnored(ResourceField field, QueryContext queryContext) { // NOSONAR signature is ok since protected

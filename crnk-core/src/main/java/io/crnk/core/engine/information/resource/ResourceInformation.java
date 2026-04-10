@@ -101,7 +101,7 @@ public class ResourceInformation extends BeanInformationBase {
 
     private ResourceFieldAccess access = new ResourceFieldAccess(true, true, true, true, true, true);
 
-    private StringMapper idStringMapper = new StringMapper() {
+    private StringMapper<Object> idStringMapper = new StringMapper<Object>() {
         @Override
         public String toString(Object input) {
             return parser.toString(input);
@@ -109,7 +109,7 @@ public class ResourceInformation extends BeanInformationBase {
 
         @Override
         public Object parse(String input) {
-            Class idType = getIdField().getType();
+            Class<?> idType = getIdField().getType();
             return parser.parse(input, idType);
         }
     };
@@ -208,7 +208,7 @@ public class ResourceInformation extends BeanInformationBase {
             }
 
             @Override
-            public Class getImplementationClass() {
+            public Class<?> getImplementationClass() {
                 return idField.getType();
             }
         };
@@ -468,7 +468,8 @@ public class ResourceInformation extends BeanInformationBase {
         return superResourceType;
     }
 
-    public <T> ResourceInstanceBuilder<T> getInstanceBuilder() {
+    @SuppressWarnings("unchecked")
+	public <T> ResourceInstanceBuilder<T> getInstanceBuilder() {
         return (ResourceInstanceBuilder<T>) instanceBuilder;
     }
 
@@ -568,7 +569,6 @@ public class ResourceInformation extends BeanInformationBase {
      * @param id stringified id
      * @return id
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public Serializable parseIdString(String id) {
         if (id == null) {
             return null;

@@ -107,6 +107,7 @@ public abstract class BaseController implements Controller {
 		}
 
 		Object data = requestDocument.getData().get();
+		@SuppressWarnings("unchecked")
 		List<Resource> resourceBodies = data instanceof List ? (List<Resource>) data : Arrays.asList((Resource) data);
 		for (Resource resourceBody : resourceBodies) {
 			verifyResourceBody(resourceBody, path);

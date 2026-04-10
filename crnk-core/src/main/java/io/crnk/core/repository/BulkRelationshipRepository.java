@@ -1,7 +1,6 @@
 package io.crnk.core.repository;
 
 import io.crnk.core.engine.internal.utils.MultivaluedMap;
-import io.crnk.core.engine.internal.utils.PreconditionUtil;
 import io.crnk.core.queryspec.QuerySpec;
 import io.crnk.core.resource.list.DefaultResourceList;
 import io.crnk.core.resource.list.ResourceList;

@@ -93,7 +93,7 @@ public class ResourceRegistryImpl extends ResourceRegistryPartBase implements Re
         while (currentClass != null && currentClass != Object.class) {
             RegistryEntry entry = rootPart.getEntry(currentClass);
             if (entry != null) {
-                return (Optional) Optional.of(currentClass);
+                return Optional.of(currentClass);
             }
             currentClass = currentClass.getSuperclass();
         }

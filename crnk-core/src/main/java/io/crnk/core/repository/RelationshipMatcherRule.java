@@ -100,7 +100,7 @@ public class RelationshipMatcherRule {
 		return expected == null || Objects.equals(expected, actual);
 	}
 
-	private boolean nullOrMatch(Class expected, Class actual, boolean matchSubTypes) {
+	private boolean nullOrMatch(Class<?> expected, Class<?> actual, boolean matchSubTypes) {
 		return expected == null || Objects.equals(expected, actual) || matchSubTypes && expected.isAssignableFrom(actual);
 	}
 

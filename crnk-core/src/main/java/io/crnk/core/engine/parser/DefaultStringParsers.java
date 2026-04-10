@@ -20,7 +20,7 @@ public final class DefaultStringParsers {
 	}
 
 	public static Map<Class, StringMapper> get() {
-		Map<Class, StringMapper> parsers = new HashMap();
+		Map<Class, StringMapper> parsers = new HashMap<>();
 
 		addType(parsers, asList(Byte.class, byte.class), new ToStringStringMapper<Byte>() {
 
@@ -114,7 +114,7 @@ public final class DefaultStringParsers {
 		}
 	}
 
-	private static ParserException newException(Class clazz, String input) {
+	private static ParserException newException(Class<?> clazz, String input) {
 		return new ParserException(String.format("String cannot be casted to %s: %s", clazz, input));
 	}
 }

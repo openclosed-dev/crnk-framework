@@ -9,7 +9,7 @@ public class MethodBasedMapper<T> implements StringParser<T> {
 
 	private final Method method;
 
-	private final Class clazz;
+	private final Class<?> clazz;
 
 	public MethodBasedMapper(Method method, Class clazz) {
 		this.method = method;

@@ -75,9 +75,7 @@ public class SerializerUtil {
 				JsonNode hrefNode = linkNode.get(HREF);
 				JsonNode relNode = linkNode.get(REL);
 				JsonNode anchorNode = linkNode.get(ANCHOR);
-				JsonNode paramsNode = linkNode.get(PARAMS);
 				JsonNode describedbyNode = linkNode.get(DESCRIBEDBY);
-				JsonNode metaNode = linkNode.get(META);
 				if (hrefNode == null) {
 					return null;
 				}

@@ -93,9 +93,10 @@ public class Document implements MetaContainer, LinksContainer {
 		return data.get() instanceof Collection;
 	}
 
+	@SuppressWarnings("unchecked")
 	@JsonIgnore
 	public Nullable<Resource> getSingleData() {
-		return (Nullable<Resource>) (Nullable) data;
+		return (Nullable<Resource>) (Nullable<?>) data;
 	}
 
 	@Override
@@ -121,12 +122,14 @@ public class Document implements MetaContainer, LinksContainer {
 		}
 		Object value = data.get();
 		if (value == null) {
-			return Nullable.of((List<Resource>) (List) Collections.emptyList());
+			return Nullable.of(Collections.emptyList());
 		}
 		if (!(value instanceof Iterable)) {
 			return Nullable.of((Collections.singletonList((Resource) value)));
 		}
-		return Nullable.of((List<Resource>) value);
+		@SuppressWarnings("unchecked")
+		List<Resource> list = (List<Resource>) value;
+		return Nullable.of(list);
 	}
 
 	public ObjectNode getJsonapi() {

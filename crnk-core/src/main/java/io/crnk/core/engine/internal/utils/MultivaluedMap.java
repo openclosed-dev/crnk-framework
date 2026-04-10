@@ -20,6 +20,7 @@ public class MultivaluedMap<K, V> {
 	public static <K, V> MultivaluedMap<K, V> fromCollection(Collection<V> values, PathSpec keyPath) {
 		MultivaluedMap<K, V> map = new MultivaluedMap<>();
 		for (V value : values) {
+			@SuppressWarnings("unchecked")
 			K key = (K) PropertyUtils.getProperty(value, keyPath.getElements());
 			PreconditionUtil.verify(key != null, "key must not be null for {}", value);
 			map.add(key, value);

@@ -55,8 +55,8 @@ public class SetOwnerStrategy<T, I, D, J>
         } else {
             RegistryEntry targetEntry = context.getTargetEntry(field);
             Collection<D> targets = context.findAll(targetEntry, targetIds, queryContext);
-            @SuppressWarnings("unchecked")
-            Collection<D> currentTargets = getOrCreateCollection(source, field);
+
+			Collection<D> currentTargets = getOrCreateCollection(source, field);
             for (D target : targets) {
                 currentTargets.add(target);
             }
@@ -76,8 +76,8 @@ public class SetOwnerStrategy<T, I, D, J>
         } else {
             RegistryEntry targetEntry = context.getTargetEntry(field);
             Collection<D> targets = context.findAll(targetEntry, targetIds, queryContext);
-            @SuppressWarnings("unchecked")
-            Collection<D> currentTargets = getOrCreateCollection(source, field);
+
+			Collection<D> currentTargets = getOrCreateCollection(source, field);
             for (D target : targets) {
                 currentTargets.remove(target);
             }

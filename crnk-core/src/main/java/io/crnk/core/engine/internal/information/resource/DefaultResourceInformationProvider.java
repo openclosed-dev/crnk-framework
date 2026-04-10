@@ -4,7 +4,6 @@ import io.crnk.core.engine.information.resource.ResourceField;
 import io.crnk.core.engine.information.resource.ResourceFieldAccess;
 import io.crnk.core.engine.information.resource.ResourceFieldInformationProvider;
 import io.crnk.core.engine.information.resource.ResourceInformation;
-import io.crnk.core.engine.information.resource.VersionRange;
 import io.crnk.core.engine.internal.utils.ClassUtils;
 import io.crnk.core.engine.internal.utils.StringUtils;
 import io.crnk.core.engine.properties.PropertiesProvider;
@@ -13,7 +12,6 @@ import io.crnk.core.exception.ResourceIdNotFoundException;
 import io.crnk.core.queryspec.pagingspec.PagingBehavior;
 import io.crnk.core.queryspec.pagingspec.PagingSpec;
 import io.crnk.core.resource.annotations.JsonApiResource;
-import io.crnk.core.resource.annotations.JsonApiVersion;
 import io.crnk.core.utils.Prioritizable;
 
 import java.lang.annotation.Annotation;
@@ -29,8 +27,6 @@ import java.util.List;
 public class DefaultResourceInformationProvider extends ResourceInformationProviderBase implements Prioritizable {
 
     public static final int PRIORITY = 100;
-
-    private final List<? extends PagingBehavior> pagingBehaviors;
 
     public DefaultResourceInformationProvider(PropertiesProvider propertiesProvider,
                                               PagingBehavior pagingBehavior,
@@ -50,8 +46,6 @@ public class DefaultResourceInformationProvider extends ResourceInformationProvi
                                               List<? extends PagingBehavior> pagingBehaviors,
                                               List<ResourceFieldInformationProvider> resourceFieldInformationProviders) {
         super(propertiesProvider, resourceFieldInformationProviders);
-
-        this.pagingBehaviors = pagingBehaviors;
     }
 
     @Override
@@ -60,7 +54,6 @@ public class DefaultResourceInformationProvider extends ResourceInformationProvi
         return annotation != null;
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public ResourceInformation build(Class<?> resourceClass) {
         return build(resourceClass, false);
     }
@@ -73,7 +66,7 @@ public class DefaultResourceInformationProvider extends ResourceInformationProvi
         String resourceType = getResourceType(resourceClass, allowNonResourceBaseClass);
         String resourcePath = getResourcePath(resourceClass, allowNonResourceBaseClass);
 
-        DefaultResourceInstanceBuilder<?> instanceBuilder = new DefaultResourceInstanceBuilder(resourceClass);
+        DefaultResourceInstanceBuilder<?> instanceBuilder = new DefaultResourceInstanceBuilder<>(resourceClass);
 
         Class<?> superclass = resourceClass.getSuperclass();
         String superResourceType =
@@ -82,7 +75,8 @@ public class DefaultResourceInformationProvider extends ResourceInformationProvi
 
         JsonApiResource annotation = ClassUtils.getAnnotation(resourceClass, JsonApiResource.class).get();
 
-        Class<PagingSpec> pagingSpec = (Class<PagingSpec>) annotation.pagingSpec();
+        @SuppressWarnings("unchecked")
+		Class<PagingSpec> pagingSpec = (Class<PagingSpec>) annotation.pagingSpec();
         ResourceInformation information = new ResourceInformation(context.getTypeParser(),
                 resourceClass, resourceType, resourcePath, superResourceType, instanceBuilder, resourceFields,
                 pagingSpec);

@@ -37,14 +37,14 @@ public class GetFromOwnerStrategy<T, I, D, J> extends ForwardingStrategyBase
 
 		List<D> targets;
 		if (field.hasIdField()) {
-			Set targetIds = new HashSet();
+			Set<Object> targetIds = new HashSet<>();
 			for (Object source : sources) {
 				Object targetId = field.getIdAccessor().getValue(source);
 				if(targetId == null){
 					continue; // null relationship
 				}
 				if (field.isCollection()) {
-					targetIds.addAll((Collection) targetId);
+					targetIds.addAll((Collection<?>) targetId);
 				} else {
 					targetIds.add(targetId);
 				}
@@ -66,7 +66,7 @@ public class GetFromOwnerStrategy<T, I, D, J> extends ForwardingStrategyBase
 				Object target = field.getAccessor().getValue(source);
 				if (target != null) {
 					if (field.isCollection()) {
-						bulkResult.addAll(sourceId, querySpec.apply((Collection) target));
+						bulkResult.addAll(sourceId, querySpec.apply((Collection<?>) target));
 					} else {
 						bulkResult.add(sourceId, target);
 					}
@@ -102,7 +102,7 @@ public class GetFromOwnerStrategy<T, I, D, J> extends ForwardingStrategyBase
 
 			Object targetId = field.getIdAccessor().getValue(source);
 			if (field.isCollection()) {
-				Collection targetIds = ResourceUtils.toTypedIds(targetInformation, ((Collection) targetId));
+				Collection targetIds = ResourceUtils.toTypedIds(targetInformation, ((Collection<?>) targetId));
 				targetIds.retainAll(targetMap.keySet());
 				for (Object targetElementId : targetIds) {
 					addResult(bulkResult, field, sourceId, targetElementId, targetMap);

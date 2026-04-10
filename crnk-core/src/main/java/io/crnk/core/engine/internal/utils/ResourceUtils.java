@@ -1,5 +1,6 @@
 package io.crnk.core.engine.internal.utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ResourceUtils {
 		if (!ids.isEmpty()) {
 			Object firstId = ids.iterator().next();
 			if (firstId instanceof ResourceIdentifier && resourceInformation.getIdField().getType() != ResourceIdentifier.class) {
-				List typedIds = new ArrayList();
+				List<Serializable> typedIds = new ArrayList<>();
 				for (Object id : ids) {
 					String strId = ((ResourceIdentifier) id).getId();
 					typedIds.add(resourceInformation.parseIdString(strId));

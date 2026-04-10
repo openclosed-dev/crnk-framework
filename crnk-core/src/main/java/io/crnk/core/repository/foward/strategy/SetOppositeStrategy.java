@@ -9,7 +9,6 @@ import io.crnk.core.engine.query.QueryAdapter;
 import io.crnk.core.engine.query.QueryContext;
 import io.crnk.core.engine.registry.RegistryEntry;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,7 +16,7 @@ public class SetOppositeStrategy<T, I , D, J >
         extends ForwardingStrategyBase implements ForwardingSetStrategy<T, I, D, J> {
 
 
-    private SetOwnerStrategy oppositeSetStrategy = new SetOwnerStrategy();
+    private SetOwnerStrategy oppositeSetStrategy = new SetOwnerStrategy<>();
 
     @Override
     public void init(ForwardingStrategyContext context) {

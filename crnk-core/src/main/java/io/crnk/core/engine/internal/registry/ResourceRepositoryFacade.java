@@ -96,7 +96,7 @@ class ResourceRepositoryFacade implements ResourceRepository<Object, Serializabl
 		JsonApiResponse response = responseResult.get();
 		Collection elements = (Collection) toResource(responseResult);
 
-		DefaultResourceList result = new DefaultResourceList();
+		DefaultResourceList result = new DefaultResourceList<>();
 		result.addAll(elements);
 		result.setMeta(response.getMetaInformation());
 		result.setLinks(response.getLinksInformation());

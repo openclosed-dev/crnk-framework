@@ -19,7 +19,6 @@ import io.crnk.core.resource.links.PagedLinksInformation;
 import io.crnk.core.resource.list.DefaultResourceList;
 import io.crnk.core.resource.list.ResourceList;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -107,7 +106,6 @@ public class GetFromOppositeStrategy<T, I , D, J >
         return bulkResult;
     }
 
-    @SuppressWarnings("unchecked")
     private void handleTarget(MultivaluedMap<I, D> bulkResult, D result, Set<I>
             sourceIdSet, ResourceField oppositeField, ResourceInformation sourceInformation) {
 
@@ -173,7 +171,8 @@ public class GetFromOppositeStrategy<T, I , D, J >
             }
         } else {
             sourceIds = new ArrayList<>();
-            Collection property = (Collection) oppositeField.getAccessor().getValue(result);
+            @SuppressWarnings("unchecked")
+			Collection<T> property = (Collection<T>) oppositeField.getAccessor().getValue(result);
             if (property == null) {
                 throw new IllegalStateException("field " + oppositeField.getUnderlyingName() + "Id is null for " + result
                         + ". To make use of opposite forwarding behavior for resource lookup, the opposite resource "
@@ -183,8 +182,9 @@ public class GetFromOppositeStrategy<T, I , D, J >
                         + "on @JsonApiRelationId ");
             }
 
-            for (T potentialSource : (Collection<T>) property) {
-                I sourceId = (I) sourceInformation.getId(potentialSource);
+            for (T potentialSource : property) {
+                @SuppressWarnings("unchecked")
+				I sourceId = (I) sourceInformation.getId(potentialSource);
                 if (sourceId == null) {
                     throw new IllegalStateException("id is null for " + potentialSource);
                 }

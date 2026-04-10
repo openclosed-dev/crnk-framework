@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 
 public class ConstructorBasedParser<T> implements StringParser<T> {
 
-	private final Constructor constructor;
+	private final Constructor<T> constructor;
 
 	public ConstructorBasedParser(Constructor constructor) {
 		this.constructor = constructor;

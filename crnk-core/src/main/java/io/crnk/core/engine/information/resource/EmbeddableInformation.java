@@ -1,7 +1,5 @@
 package io.crnk.core.engine.information.resource;
 
-import io.crnk.core.exception.InvalidResourceException;
-
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Objects;

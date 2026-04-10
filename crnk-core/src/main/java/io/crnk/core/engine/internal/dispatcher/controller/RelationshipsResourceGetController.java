@@ -76,7 +76,8 @@ public class RelationshipsResourceGetController extends ResourceIncludeField {
 		if (data.isPresent()) {
 			if (data.get() != null) {
 				if (data.get() instanceof Collection) {
-					Collection<Object> resources = (Collection) data.get();
+					@SuppressWarnings("unchecked")
+					Collection<Object> resources = (Collection<Object>) data.get();
 					List<ResourceIdentifier> resourceIds = resources.stream()
 							.map(it -> toResourceIdentifier(it, resourceInformation))
 							.collect(Collectors.toList());

@@ -54,8 +54,6 @@ public class FieldResourcePost extends ResourceUpsert {
 		logger.debug("using registry entry {}", registryEntry);
 		Resource resourceBody = getRequestBody(requestDocument, jsonPath, HttpMethod.POST);
 		RegistryEntry bodyRegistryEntry = resourceRegistry.getEntry(resourceBody.getType());
-		ResourceInformation bodyResourceInformation = bodyRegistryEntry.getResourceInformation();
-
 
 		Serializable id = jsonPath.getId();
 		ResourceField relationshipField = fieldPath.getField();

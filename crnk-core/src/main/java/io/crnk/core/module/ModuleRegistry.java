@@ -575,8 +575,8 @@ public class ModuleRegistry {
 	private void findChildResources(Set<Class> resourceClasses, Class clazz) {
 		JsonApiResource annotation = (JsonApiResource) clazz.getDeclaredAnnotation(JsonApiResource.class);
 		if (annotation != null) {
-			Class[] subTypes = annotation.subTypes();
-			for (Class subType : subTypes) {
+			Class<?>[] subTypes = annotation.subTypes();
+			for (Class<?> subType : subTypes) {
 				if (!resourceClasses.contains(subType)) {
 					resourceClasses.add(subType);
 					findChildResources(resourceClasses, subType);

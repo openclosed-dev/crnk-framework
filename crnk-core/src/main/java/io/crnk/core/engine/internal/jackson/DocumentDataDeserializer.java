@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import io.crnk.core.engine.document.Resource;
 import io.crnk.core.engine.internal.utils.PreconditionUtil;
 import io.crnk.core.utils.Nullable;

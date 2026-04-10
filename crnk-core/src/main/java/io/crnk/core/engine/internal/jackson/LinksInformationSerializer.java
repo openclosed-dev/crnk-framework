@@ -5,13 +5,11 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import io.crnk.core.engine.information.bean.BeanAttributeInformation;
 import io.crnk.core.engine.information.bean.BeanInformation;
-import io.crnk.core.engine.internal.utils.SerializerUtil;
 import io.crnk.core.resource.links.DefaultLink;
 import io.crnk.core.resource.links.Link;
 import io.crnk.core.resource.links.LinksInformation;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 /**
  * Serializes {@link LinksInformation} objects as JSON objects instead of simple JSON attributes.

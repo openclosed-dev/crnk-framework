@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanInformation {
 
-	private final Class implementationClass;
+	private final Class<?> implementationClass;
 
 	private Map<String, BeanAttributeInformation> attributeMap = new HashMap<>();
 
@@ -108,7 +108,7 @@ public class BeanInformation {
 		return implementationClass;
 	}
 
-	private static final ConcurrentHashMap<Class, BeanInformation> cache = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<Class<?>, BeanInformation> cache = new ConcurrentHashMap<>();
 
 	public static BeanInformation get(Class<?> clazz) {
 		return cache.computeIfAbsent(clazz, BeanInformation::new);

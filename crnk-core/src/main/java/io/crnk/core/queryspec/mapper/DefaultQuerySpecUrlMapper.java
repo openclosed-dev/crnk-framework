@@ -338,7 +338,7 @@ public class DefaultQuerySpecUrlMapper
 					}
 					if (allowCommaSeparatedValue) {
 						String strValue = values.stream().sorted().collect(Collectors.joining(","));
-						HashSet singletonSet = new HashSet();
+						HashSet<String> singletonSet = new HashSet<>();
 						singletonSet.add(strValue);
 						map.put(key, singletonSet);
 					} else {
@@ -440,7 +440,7 @@ public class DefaultQuerySpecUrlMapper
 		QueryPathSpec resolvedPath = pathResolver.resolve(resourceInformation, parameter.getAttributePath(),
 				QueryPathResolver.NamingType.JSON, parameter.getName(), queryContext);
 		resolvedPath.verifyFilterable();
-		Class filterType = ClassUtils.getRawType(operator.getFilterType(parameter, resolvedPath.getValueType()));
+		Class<?> filterType = ClassUtils.getRawType(operator.getFilterType(parameter, resolvedPath.getValueType()));
 
 		Optional<JsonNode> optional = getJsonQuery(resolvedPath, parameter);
 		if (optional.isPresent()) {

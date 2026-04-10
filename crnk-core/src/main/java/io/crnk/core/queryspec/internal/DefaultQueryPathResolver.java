@@ -155,7 +155,7 @@ public class DefaultQueryPathResolver implements QueryPathResolver {
     }
 
     class SubTypeMap {
-        private MultivaluedMap<String, ResourceInformation> mapping = new MultivaluedMap();
+        private MultivaluedMap<String, ResourceInformation> mapping = new MultivaluedMap<>();
 
         public SubTypeMap(ResourceRegistry resourceRegistry) {
 

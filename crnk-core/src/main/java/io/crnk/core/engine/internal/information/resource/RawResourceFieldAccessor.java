@@ -16,7 +16,7 @@ public class RawResourceFieldAccessor implements io.crnk.core.engine.information
 
 	private final ResourceFieldType fieldType;
 	private final String fieldName;
-	private final Class type;
+	private final Class<?> type;
 
 	private final ObjectReader reader;
 

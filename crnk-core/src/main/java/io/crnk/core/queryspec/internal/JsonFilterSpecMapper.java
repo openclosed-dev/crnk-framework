@@ -211,11 +211,11 @@ public class JsonFilterSpecMapper {
 		QueryPathSpec resolvedPath = pathResolver.resolve(resourceInformation, attributePath.getElements(), QueryPathResolver.NamingType.JSON, "filter", queryContext);
 		resolvedPath.verifyFilterable();
 
-		Class valueType = ClassUtils.getRawType(resolvedPath.getValueType());
+		Class<?> valueType = ClassUtils.getRawType(resolvedPath.getValueType());
 		ObjectReader reader = context.getObjectMapper().readerFor(valueType);
 		try {
 			if (jsonNode instanceof ArrayNode) {
-				List values = new ArrayList();
+				List<?> values = new ArrayList<>();
 				for (JsonNode elementNode : jsonNode) {
 					values.add(reader.readValue(elementNode));
 				}

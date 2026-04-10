@@ -145,7 +145,7 @@ public class ClassUtils {
 	private static boolean isValidBeanGetter(Method getter) {
 		// property getters must have non-null return type and zero parameters
 		int parameterCount = getter.getParameterTypes().length;
-		Class returnType = getter.getReturnType();
+		Class<?> returnType = getter.getReturnType();
 		return returnType != null && parameterCount == 0;
 	}
 
@@ -367,7 +367,7 @@ public class ClassUtils {
 	}
 
 	public static Type getElementType(Type genericType) {
-		Class rawtype = getRawType(genericType);
+		Class<?> rawtype = getRawType(genericType);
 		if (Iterable.class.isAssignableFrom(rawtype) && genericType instanceof Class) {
 			return Object.class;
 		}

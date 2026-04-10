@@ -104,7 +104,7 @@ public class DefaultResourceFieldInformationProvider implements ResourceFieldInf
 
     @Override
     public boolean isEmbeddedType(BeanAttributeInformation attributeDesc) {
-        Class elementType = ClassUtils.getRawType(ClassUtils.getElementType(attributeDesc.getImplementationType()));
+        Class<?> elementType = ClassUtils.getRawType(ClassUtils.getElementType(attributeDesc.getImplementationType()));
         return elementType.getAnnotation(JsonApiEmbeddable.class) != null;
     }
 

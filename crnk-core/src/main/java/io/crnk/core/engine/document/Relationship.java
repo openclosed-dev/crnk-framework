@@ -89,9 +89,10 @@ public class Relationship implements MetaContainer, LinksContainer {
 		this.links = links;
 	}
 
+	@SuppressWarnings("unchecked")
 	@JsonIgnore
 	public Nullable<ResourceIdentifier> getSingleData() {
-		return (Nullable<ResourceIdentifier>) (Nullable) data;
+		return (Nullable<ResourceIdentifier>) (Nullable<?>) data;
 	}
 
 	@JsonIgnore
@@ -103,7 +104,9 @@ public class Relationship implements MetaContainer, LinksContainer {
 		if (!(value instanceof Iterable)) {
 			return Nullable.of((Collections.singletonList((ResourceIdentifier) value)));
 		}
-		return Nullable.of((List<ResourceIdentifier>) value);
+		@SuppressWarnings("unchecked")
+		List<ResourceIdentifier> identifiers = (List<ResourceIdentifier>) value;
+		return Nullable.of(identifiers);
 	}
 
 	@Override

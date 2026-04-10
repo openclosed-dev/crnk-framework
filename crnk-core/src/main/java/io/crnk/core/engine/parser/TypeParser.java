@@ -1,6 +1,5 @@
 package io.crnk.core.engine.parser;
 
-import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -169,7 +168,7 @@ public class TypeParser {
 			return mappers.get(clazz);
 
 		}
-		StringMapper mapper = setupMapper(clazz);
+		StringMapper<T> mapper = setupMapper(clazz);
 		if (mapper != null) {
 			LOGGER.debug("using mapper {} for type {}", mapper, clazz);
 			mappers.put(clazz, mapper);
@@ -183,7 +182,7 @@ public class TypeParser {
 			return parsers.get(clazz);
 
 		}
-		StringParser parser = setupParser(clazz, input);
+		StringParser<T> parser = setupParser(clazz, input);
 		if (parser != null) {
 			LOGGER.debug("using parser {} for type {}", parser, clazz);
 			parsers.put(clazz, parser);
@@ -206,7 +205,7 @@ public class TypeParser {
 		}
 
 		if (useJackson) {
-			return new JacksonStringMapper(objectMapper, clazz);
+			return new JacksonStringMapper<>(objectMapper, clazz);
 		}
 
 		return new ToStringStringMapper<T>() {
@@ -227,12 +226,12 @@ public class TypeParser {
 		}
 
 		if (enforceJackson) {
-			return new JacksonStringMapper(objectMapper, clazz);
+			return new JacksonStringMapper<>(objectMapper, clazz);
 		}
 
 		if (useJackson && input != null) {
 			try {
-				JacksonStringMapper parser = new JacksonStringMapper(objectMapper, clazz);
+				JacksonStringMapper<T> parser = new JacksonStringMapper<>(objectMapper, clazz);
 				parser.parse(input);
 				return parser;
 			}
@@ -248,7 +247,7 @@ public class TypeParser {
 		try {
 			if (containsStringConstructor(clazz)) {
 				Constructor<T> constructor = clazz.getDeclaredConstructor(String.class);
-				return new ConstructorBasedParser(constructor);
+				return new ConstructorBasedParser<>(constructor);
 			}
 		}
 		catch (NoSuchMethodException e) {
@@ -260,7 +259,7 @@ public class TypeParser {
 			method = methodCache.find(clazz, "parse", CharSequence.class);
 		}
 		if (method.isPresent()) {
-			return new MethodBasedMapper(method.get(), clazz);
+			return new MethodBasedMapper<>(method.get(), clazz);
 		}
 
 		return null;
@@ -268,7 +267,7 @@ public class TypeParser {
 
 	private boolean containsStringConstructor(Class<?> clazz) {
 		boolean result = false;
-		for (Constructor constructor : clazz.getDeclaredConstructors()) {
+		for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
 			if (!Modifier.isPrivate(constructor.getModifiers()) && constructor.getParameterTypes().length == 1
 					&& constructor.getParameterTypes()[0] == String.class) {
 				result = true;
@@ -281,6 +280,7 @@ public class TypeParser {
 		this.objectMapper = objectMapper;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T> StringParser<T> getParser(Class<T> clazz) {
 		return parsers.get(clazz);
 	}

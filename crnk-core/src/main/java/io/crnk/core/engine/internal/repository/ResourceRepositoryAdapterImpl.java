@@ -32,6 +32,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class ResourceRepositoryAdapterImpl extends ResponseRepositoryAdapter implements ResourceRepositoryAdapter {
 
+	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceRepositoryAdapterImpl.class);
 
 	private final ResourceRepository resourceRepository;
@@ -92,7 +93,6 @@ public class ResourceRepositoryAdapterImpl extends ResponseRepositoryAdapter imp
 		}
 		RepositoryRequestFilterChainImpl chain = new RepositoryRequestFilterChainImpl() {
 
-			@SuppressWarnings("rawtypes")
 			@Override
 			protected JsonApiResponse invoke(RepositoryFilterContext context) {
 				RepositoryRequestSpec request = context.getRequest();
@@ -116,7 +116,6 @@ public class ResourceRepositoryAdapterImpl extends ResponseRepositoryAdapter imp
 		}
 		RepositoryRequestFilterChainImpl chain = new RepositoryRequestFilterChainImpl() {
 
-			@SuppressWarnings("rawtypes")
 			@Override
 			protected JsonApiResponse invoke(RepositoryFilterContext context) {
 				RepositoryRequestSpec request = context.getRequest();

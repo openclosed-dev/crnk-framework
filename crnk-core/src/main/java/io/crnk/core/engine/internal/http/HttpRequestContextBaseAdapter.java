@@ -85,6 +85,7 @@ public class HttpRequestContextBaseAdapter implements HttpRequestContext {
 		return accept == null || accepts("*") || accepts("*/*");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T unwrap(Class<T> type) {
 		if (type.isInstance(this)) {

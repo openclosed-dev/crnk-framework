@@ -166,7 +166,7 @@ public class ResourcePatchController extends ResourceUpsert {
 
 
 	private <K, V> Map<K, V> emptyIfNull(Map<K, V> value) {
-		return (Map<K, V>) (value != null ? value : Collections.emptyMap());
+		return value != null ? value : Collections.emptyMap();
 	}
 
 	private String extractAttributesFromResourceAsJson(Resource resource) throws IOException {

@@ -198,7 +198,7 @@ public class IncludeRequest {
 
     private void setRelationshipInformation(Relationship relationship, Object targetData) {
         if (targetData instanceof ResourceList) {
-            ResourceList list = (ResourceList) targetData;
+            ResourceList<?> list = (ResourceList<?>) targetData;
 
             MetaInformation meta = list.getMeta();
             if (meta != null) {

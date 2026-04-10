@@ -267,7 +267,7 @@ public class QuerySpec {
 
     public Collection<QuerySpec> getNestedSpecs() {
     	// Using a set to remove duplicate querySpec between typeRelatedSpecs and classRelatedSpecs
-    	Set<QuerySpec> allRelatedSpecs = new HashSet(typeRelatedSpecs.values());
+    	Set<QuerySpec> allRelatedSpecs = new HashSet<>(typeRelatedSpecs.values());
     	allRelatedSpecs.addAll(classRelatedSpecs.values());
         return Collections.unmodifiableCollection(allRelatedSpecs);
     }
@@ -278,7 +278,7 @@ public class QuerySpec {
         for (QuerySpec spec : specs) {
 	    if (spec.getResourceType() != null) {
                 typeRelatedSpecs.put(spec.getResourceType(), spec);
-            } 
+            }
         if (spec.getResourceClass() != null) {
                 classRelatedSpecs.put(spec.getResourceClass(), spec);
             }
